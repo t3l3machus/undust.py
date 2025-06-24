@@ -6,8 +6,7 @@
 
 `Undust` is a URL pattern generator that helps uncover archived, backup, and temporary files left behind on web servers. Given a URL, it generates the most common file variants like 'gz', 'rar', 'tar', 'zip', 'swp', 'swo', 'swn', 'bak', 'bak1', 'bak2', 'backup', 'old', 'copy', 'save', 'txt', 'tmp', 'temp', and more. With the `-a` option, it recursively generates these patterns across all parent directories in the path to maximize coverage:  
 
-![image](https://github.com/user-attachments/assets/291143de-76a2-455b-ba2e-4080a7c87a58)
-
+![Untitled](https://github.com/user-attachments/assets/3de75a84-b283-4fc5-a2fa-bb2166bf2aad)
 
 
 ## Installation
@@ -28,6 +27,8 @@ You can also provide input URLs from a file:
 ```
 python3 undust.py -f urls.txt -q -a | httpx -sc -cl -title -timeout 2 -mc 200 -silent
 ```
+
+The extentions and patterns can be customized by edditing the script.
 
 ## Options
 ```
