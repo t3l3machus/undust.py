@@ -4,7 +4,8 @@
 [![License](https://img.shields.io/badge/License-BSD-red.svg)](https://github.com/t3l3machus/undust.py/blob/main/LICENSE)
 <img src="https://img.shields.io/badge/Maintained%3F-Yes-96c40f">
 
-`Undust` is a URL pattern generator that helps uncover archived, backup, and temporary files left behind on web servers. Given a URL, it generates the most common file variants like 'gz', 'rar', 'tar', 'zip', 'swp', 'swo', 'swn', 'bak', 'bak1', 'bak2', 'backup', 'old', 'copy', 'save', 'txt', 'tmp', 'temp', and more. With the `-a` option, it recursively generates these patterns across all parent directories in the path to maximize coverage.
+`Undust` is a URL pattern generator that helps uncover archived, backup, and temporary files left behind on web servers. Given a URL, it generates the most common file variants like 'gz', 'rar', 'tar', 'zip', 'swp', 'swo', 'swn', 'bak', 'bak1', 'bak2', 'backup', 'old', 'copy', 'save', 'txt', 'tmp', 'temp', and more. With the `-a` option, it recursively generates these patterns across all parent directories in the path to maximize coverage:  
+
 ![image](https://github.com/user-attachments/assets/291143de-76a2-455b-ba2e-4080a7c87a58)
 
 
@@ -15,12 +16,18 @@ No special requirements:
 git clone https://github.com/t3l3machus/undust.py
 ```
 ## Usage examples
-Undust requires URLs as input to generate archive and backup filename variations. It works great in combination with tools like `katana` and `httpx` by [ProjectDiscovery](https://github.com/projectdiscovery).  
-Crawl a target app for urls, pipe them to undust and then to httpx for discovery:
+Undust requires URLs as input to generate archive and backup filename variations. It works great in combination with tools like `katana` and `httpx` by [ProjectDiscovery](https://github.com/projectdiscovery).   
+
+Crawl a target app for urls with `katana`, pipe them to `undust` for archive and backup patterns generation and then to `httpx` for probing:
 ```
-katana -u https://example.com -jc -d 3 -silent -ef js,css,png,jpg,ico,json | python3 undust.py -s -q -a | httpx -sc -cl -title -timeout 2 -mc 200 -silent
+katana -u https://example.com -jc -d 3 -silent -ef js,css,png,jpg | python3 undust.py -s -q -a | httpx -sc -cl -title -timeout 2 -mc 200 -silent
 ```
-❗Keep in mind that, this command matches only 200 status responses. You will see no output if no archive is found, which is a rare occasion anyway.
+❗This command only matches responses with a 200 OK status. If no archived file is found, there will be no output. Modern applications may return 200 for non-existent resources (soft 404s), which can lead to false positives.  
+
+You can also provide input URLs from a file:
+```
+python3 undust.py -f urls.txt -q -a | httpx -sc -cl -title -timeout 2 -mc 200 -silent
+```
 
 ## Options
 ```
