@@ -4,10 +4,11 @@
 [![License](https://img.shields.io/badge/License-BSD-red.svg)](https://github.com/t3l3machus/undust.py/blob/main/LICENSE)
 <img src="https://img.shields.io/badge/Maintained%3F-Yes-96c40f">
 
-`Undust` is a URL pattern generator that helps uncover archived, backup, and temporary files left behind on web servers. Given a URL, it generates the most common file variants like 'gz', 'rar', 'tar', 'zip', 'swp', 'swo', 'swn', 'bak', 'bak1', 'bak2', 'backup', 'old', 'copy', 'save', 'txt', 'tmp', 'temp', and more. With the `-a` option, it recursively generates these patterns across all parent directories in the path to maximize coverage:  
+`undust` is a URL pattern generator that helps uncover archived, backup, and temporary files left behind on web servers. Given a URL, it generates the most common archive, temp and backup file name variants:  
 
 ![Untitled](https://github.com/user-attachments/assets/3de75a84-b283-4fc5-a2fa-bb2166bf2aad)
 
+With the `-a` option, it recursively generates these patterns across all parent directories in the path to maximize coverage.
 
 ## Installation
 No special requirements:
@@ -15,7 +16,7 @@ No special requirements:
 git clone https://github.com/t3l3machus/undust.py
 ```
 ## Usage examples
-Undust requires URLs as input to generate archive and backup filename variations. It works great in combination with tools like `katana` and `httpx` by [ProjectDiscovery](https://github.com/projectdiscovery).   
+`undust` requires URLs as input to generate archive, temp and backup filename variations. It works great in combination with tools like `katana` and `httpx` by [ProjectDiscovery](https://github.com/projectdiscovery).   
 
 Crawl a target app for urls with `katana`, pipe them to `undust` for archive and backup patterns generation and then to `httpx` for probing:
 ```
