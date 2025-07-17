@@ -112,8 +112,8 @@ def generate_archive_urls(base_url, endpoint, query, ext):
         print(f'{base_url}{s}{endpoint}.{ext}{query}') if ext else do_nothing()
 
     for p in Global.archive_patterns:
-        print(f'{base_url}{p.replace('VAL', endpoint)}{query}')
-        print(f'{base_url}{p.replace('VAL', f'{endpoint}.{ext}')}{query}') if ext else do_nothing()
+        print(f"{base_url}{p.replace('VAL', endpoint)}{query}")
+        print(f"{base_url}{p.replace('VAL', f'{endpoint}.{ext}')}{query}") if ext else do_nothing()
 
 
 
